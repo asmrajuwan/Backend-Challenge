@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const createError = require("http-errors");
 const rateLimit = require("express-rate-limit");
 const userRouter = require("./routers/userRouter");
-const seedRouter = require("./routers/seedRouter");
+
 const { errorResponse } = require("./controllers/responseController");
 const authRouter = require("./routers/authRouter");
 const courseRouter = require("./routers/courseRouter");
@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/users", userRouter);
-app.use("/api/seed", seedRouter);
+
 app.use("/api/auth",authRouter)
 app.use("/api/course",courseRouter)
 

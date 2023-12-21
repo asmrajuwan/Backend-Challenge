@@ -35,18 +35,18 @@ const userSchema = new Schema({
     address:{ 
         type:String,
         required:[true,'user address required'],
-        minlength:[3,'adress length must be min 3 character']
+        
 
         },
     
     phone:{
           type: String,
-          required:[true,"phone number required"]  
+          required:[true,"phone is number required"]  
         },
         
         isAdmin:{
            type: Boolean,
-           default:false 
+           default:true //for testing purpose only  
         },
  
         

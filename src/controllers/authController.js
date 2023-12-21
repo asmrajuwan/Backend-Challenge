@@ -9,7 +9,7 @@ const { hashPassword } = require("../helpers/authHelper");
 
 const processRegister = async (req, res, next) => {
     try {
-        const { name, email, password, phone, address } = req.body;
+        const { name, email, password, phone, address} = req.body;
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -76,34 +76,34 @@ const handleLogout = (req, res, next) => {
         next(error);
     }
 };
- const handleForgotPassword = async (req, res,next) => {
-    try {
-        const {email,newPassword} =req.body;
-        if (!email) {
-            throw createError(400, "email is required" );
-         }
-         if (!newPassword) {
-            throw createError(400,"new password is required" );
-         }
+//  const handleForgotPassword = async (req, res,next) => {
+//     try {
+//         const {email,newPassword} =req.body;
+//         if (!email) {
+//             throw createError(400, "email is required" );
+//          }
+//          if (!newPassword) {
+//             throw createError(400,"new password is required" );
+//          }
 
-        const user = await User.findOne({email});
+//         const user = await User.findOne({email});
 
-        if (!user) {
-            return res.status(404).send({
-                success: false,
-                message: "wrong email or answer",
-            });
-        }
+//         if (!user) {
+//             return res.status(404).send({
+//                 success: false,
+//                 message: "wrong email",
+//             });
+//         }
 
-        const hashed = await hashPassword(newPassword);
-        await User.findByIdAndUpdate(user._id, { password: hashed });
-        return successResponse(res, {
-            statusCode: 200,
-            message: "password reset successfully",
-        });
-    } catch (error) {
-      next(error)
-    }
-};
+//         const hashed = await hashPassword(newPassword);
+//         await User.findByIdAndUpdate(user._id, { password: hashed });
+//         return successResponse(res, {
+//             statusCode: 200,
+//             message: "password reset successfully",
+//         });
+//     } catch (error) {
+//       next(error)
+//     }
+// };
 
-module.exports = { processRegister, handleLogin, handleLogout ,handleForgotPassword};
+module.exports = { processRegister, handleLogin, handleLogout };
